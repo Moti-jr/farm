@@ -1,0 +1,51 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="zxx">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="Ogani Template">
+    <meta name="keywords" content="Ogani, unica, creative, html">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    {#{% static 'app/' %}#}
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;600;900&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+    <!-- Css Styles -->
+    <link rel="stylesheet" href="{% static 'app/css/bootstrap.min.css' %}" type="text/css">
+
+    <link rel="stylesheet" href="{% static 'app/css/font-awesome.min.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'app/css/elegant-icons.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'app/css/nice-select.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'app/css/jquery-ui.min.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'app/css/owl.carousel.min.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'app/css/slicknav.min.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'app/css/style.css' %}" type="text/css">
+     <title> Motijnr |{% block title %} {% endblock %}</title>
+</head>
+
+<body>
+{% include 'partials/navbar.html' %}
+{% include 'partials/hero.html' %}
+
+{% block content %}
+
+
+{% endblock %}
+{% include 'partials/footer.html' %}
+<!-- Js Plugins -->
+<script src="{% static 'app/js/jquery-3.3.1.min.js' %}"></script>
+<script src="{% static 'app/js/bootstrap.min.js' %}"></script>
+<script src="{% static 'app/js/jquery.nice-select.min.js' %}"></script>
+<script src="{% static 'app/js/jquery-ui.min.js' %}"></script>
+<script src="{% static 'app/js/jquery.slicknav.js' %}"></script>
+<script src="{% static 'app/js/mixitup.min.js' %}"></script>
+<script src="{% static 'app/js/owl.carousel.min.js' %}"></script>
+<script src="{% static 'app/js/main.js' %}"></script>
+</body>
+
+</html>
