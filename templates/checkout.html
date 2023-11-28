@@ -32,7 +32,7 @@
                 <h4>Billing Details</h4>
                 <form action="#">
                     <div class="row">
-                        <div class="col-lg-8 col-md-6">
+                        <div class="col-lg-6 col-md-6">
                             <div class="row">
                                 <div class="col-lg-6">
                                     <div class="checkout__input">
@@ -108,17 +108,47 @@
                                     placeholder="Notes about your order, e.g. special notes for delivery.">
                             </div>
                         </div>
-                        <div class="col-lg-4 col-md-6">
+                        <div class="col-lg-6 col-md-6">
                             <div class="checkout__order">
                                 <h4>Your Order</h4>
-                                <div class="checkout__order__products">Products <span>Total</span></div>
-                                <ul>
-                                    <li>Vegetable’s Package <span>$75.99</span></li>
-                                    <li>Fresh Vegetable <span>$151.99</span></li>
-                                    <li>Organic Bananas <span>$53.99</span></li>
-                                </ul>
-                                <div class="checkout__order__subtotal">Subtotal <span>$750.99</span></div>
-                                <div class="checkout__order__total">Total <span>$750.99</span></div>
+                          <table class="table table-hover">
+                            <thead>
+                            <tr>
+                                <th class="shoping__product m-2">Products</th>
+                                <th>Price</th>
+                                <th>Quantity</th>
+                                <th>Total</th>
+                                <th></th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for item in items %}
+                                <tr>
+                                    <td class="shoping__cart__item">
+
+                                        <h5>{{ item.item.name }}</h5>
+                                    </td>
+                                    <td class="shoping__cart__price">
+                                        ${{ item.item.price|floatformat:2 }}
+                                    </td>
+                                    <td class="shoping__cart__quantity">
+                                        <div class="quantity">
+                                            <div class="pro-qty">
+                                                <input type="text" value="{{ item.quantity }}">
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="shoping__cart__total">
+                                        ${{ item.get_total|floatformat:2 }}
+                                    </td>
+
+                                </tr>
+                            {% endfor %}
+
+                            </tbody>
+                        </table>
+                                <div class="checkout__order__subtotal">Total items<span>{{order.get_cart_items }}</span></div>
+                                <div class="checkout__order__total">Total <span>${{ order.get_cart_total|floatformat:2 }}</span></div>
                                 <div class="checkout__input__checkbox">
                                     <label for="acc-or">
                                         Create an account?

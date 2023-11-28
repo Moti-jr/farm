@@ -1,7 +1,8 @@
 from django.db.models import QuerySet
 from django.shortcuts import render
 
-from main_app.models import Item
+from main_app.models import Item, Order
+from django.shortcuts import render
 
 
 # Create your views here.
@@ -17,7 +18,7 @@ def blog(request):
 
 def shop(request):
     items = Item.objects.all()
-    # print(items)  # Add this line for debugging
+    # print(items[1])  # Add this line for debugging
     context = {'items': items}
     # print(context)
     return render(request, 'shop.html', context)
@@ -32,7 +33,16 @@ def shop_details(request):
 
 
 def shopping_cart(request):
-    return render(request, 'shopping-cart.html')
+    if request.user.is_authenticated:
+        customer = request.user.customer
+        order, created = Order.objects.get_or_create(Customer=customer, complete=False)
+        items = order.orderitem_set.all()
+
+    else:
+        items = []
+        order = {'get_cart_total': 0, 'get_cart_items': 0} #for user not loged in
+    context = {'items': items, 'order': order}
+    return render(request, 'shopping-cart.html', context)
 
 
 def blog_details(request):
@@ -40,4 +50,13 @@ def blog_details(request):
 
 
 def checkout(request):
-    return render(request, 'checkout.html')
+    if request.user.is_authenticated:
+        customer = request.user.customer
+        order, created = Order.objects.get_or_create(Customer=customer, complete=False)
+        items = order.orderitem_set.all()
+        # print(order)
+    else:
+        items = []
+        order = {'get_cart_total': 0, 'get_cart_items': 0}  # for user not logged in
+    context = {'items': items, 'order': order}
+    return render(request, 'checkout.html', context)
